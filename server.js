@@ -1,6 +1,8 @@
 // DEPENDENCIES
 const express = require('express')
 const app = express()
+const { Sequelize } = require('sequelize')
+const sequelize = new Sequelize(process.env.PG_URI)
 
 // CONFIGURATION / MIDDLEWARE
 require('dotenv').config()
