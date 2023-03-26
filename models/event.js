@@ -1,3 +1,4 @@
+'use strict';
 const { finalizeSession } = require('pg/lib/sasl');
 const{Model, INTEGER}=require('sequelize');
 module.exports = (sequelize,DataTypes)=>{

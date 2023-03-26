@@ -1,48 +1,27 @@
-// DEPENDENCIES
-const { Sequelize, DataTypes,  Model } = require('sequelize')
-const sequelize = new Sequelize(process.env.PG_URI)
-
-// MODEL
-module.exports=(sequelize,DataTypes)=> {
-class Band extends Model{
-    static associate(Meet_Greet, Set_Time){
-        Band.hasMany(Meet_Greet, {
-            foreignKey: "band_id",
-            as: "meet_greets"
-        }),
-        Band.hasMany(Set_Time, {
-            foreignKey: "band_id",
-            set_times: "set_times"
-        })
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Band extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
     }
-}
-Band.init({
-    band_id: {
-        type:DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    name:{
-        type:DataTypes.STRING,
-        allowNull:false
-    },
-    genre:{
-        type:DataTypes.TEXT,
-        allowNull: false
-    },
-    members: {
-        type:DataTypes.SMALLINT,
-        allowNull:false
-    },
-    available_start_time:{
-        type:DataTypes.DATE,
-        allowNull:false
-    },
-    emd_time:{
-        type: DataTypes.DATE,
-        allowNull: false
-    }
-});
-return Band;
-}
-
+  }
+  Band.init({
+    band_id: DataTypes.INTEGER,
+    name: DataTypes.STRING,
+    genre: DataTypes.TEXT,
+    available_start_time: DataTypes.DATE,
+    end_time: DataTypes.DATE
+  }, {
+    sequelize,
+    modelName: 'Band',
+  });
+  return Band;
+};
